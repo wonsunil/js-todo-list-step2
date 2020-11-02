@@ -2,23 +2,33 @@ import Component from "../core/Component.js";
 
 export default class UserList extends Component {
 	template() {
-		this.executeXhr("/api/users", {method: "GET"}, res => {
-			const data = JSON.parse(res);
+		// let data = this.executeXhr("/api/users", {method: "GET"}, res => {
+		// 	return JSON.parse(res);
+		// });
 
-			return `${[...data].map(user => `
-				<button class"ripple ${user.name === this.$props.name ? active : ""}">${user.name}</button>
-			`)}
-			<button class="ripple user-create-button">+ 유저 생성</button>
-			`;
+		// ${[...data].map(user => `
+		// 	<button class"ripple ${user.name === this.selectedName ? "active" : ""}">${user.name}</button>
+		// 	`).join("")}
 
-			return JSON.parse(res);
-		});
+		// console.log(data);
 
 		return ``;
 	};
 
+	render() {
+		this.$target.innerHTML = "";
+
+		this.$target.innerHTML = this.template();
+	};
+
 	setEvent() {
 		const { addUser, data } = this.$props;
+
+		this.addEvent("click", ".ripple", () => {
+			this.selectedName = event.target.innerHTML;
+
+			// this.render();
+		});
 
 		this.addEvent("click", ".user-create-button", () => {
 			const userName = prompt("추가하고 싶은 이름을 입력해주세요.");
