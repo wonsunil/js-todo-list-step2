@@ -3,6 +3,8 @@ export default class Componet {
 		this.$target = target;
 		this.$props = props;
 		this.baseUrl = "https://js-todo-list-9ca3a.df.r.appspot.com";
+		this.selectedName = "hello";
+		this.selectedId = "CncC0ExM0";
 
 		this.setEvent();
 		this.render();
